@@ -24,9 +24,9 @@ export class AppService {
 
       const ceoContactInfo = this.contactInfoRepo.create({
         email: 'test@test.com',
+        phone: '245345',
       });
       ceoContactInfo.employeee = ceo;
-      // ceoContactInfo.employeeId = ceo.id;
       await this.contactInfoRepo.save(ceoContactInfo);
 
       const manager = this.employeeRepo.create({
@@ -48,9 +48,31 @@ export class AppService {
       manager.meetings = [meeting1];
 
       await this.employeeRepo.save(manager);
-      return 'added';
+      console.log('added');
+      return;
     }
-    return 'alrady exists';
+    return console.log('alrady exists');
+  }
+
+  getEmployeeById(id: number) {
+    return this.employeeRepo.findOne({
+      where: { id },
+      relations: {
+        manager: true,
+        directReports: true,
+        tasks: true,
+        contactInfo: true,
+        meetings: true,
+      },
+    });
+  }
+
+  deleteEmployee(id: number) {
+    return this.employeeRepo.delete({ id });
+  }
+
+  deleteContactInfo(id: number) {
+    this.contactInfoRepo.delete(id);
   }
 
   getHello(): string {

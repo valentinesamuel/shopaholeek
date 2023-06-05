@@ -18,10 +18,9 @@ export class ContactInfo {
   @Column()
   email: string;
 
-  // @Column()
-  // employeeId: number;
-
-  @OneToOne(() => Employee, (employee) => employee.contactInfo)
+  @OneToOne(() => Employee, (employee) => employee.contactInfo, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn()
   employeee: Employee;
 }

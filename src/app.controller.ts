@@ -7,7 +7,9 @@ export class AppController {
 
   @Get()
   async getHello(): Promise<any> {
-    const res = await this.appService.seed();
-    return res;
+    await this.appService.seed();
+    // await this.appService.deleteEmployee(1);
+    await this.appService.deleteContactInfo(1);
+    return;
   }
 }

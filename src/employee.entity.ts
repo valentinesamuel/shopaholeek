@@ -20,9 +20,7 @@ export class Employee {
   @Column()
   name: string;
 
-  @OneToOne(() => ContactInfo, (contactInfo) => contactInfo.employeee, {
-    onDelete: 'CASCADE',
-  })
+  @OneToOne(() => ContactInfo, (contactInfo) => contactInfo.employeee)
   contactInfo: ContactInfo;
 
   @ManyToOne(() => Employee, (employee) => employee.directReports, {
