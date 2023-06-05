@@ -6,6 +6,7 @@ import { Employee } from './employee.entity';
 import { ContactInfo } from './contact-info.entity';
 import { Meeting } from './meeting.entity';
 import { Task } from './task-entity';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { Task } from './task-entity';
       synchronize: true,
     }),
     TypeOrmModule.forFeature([Employee, ContactInfo, Meeting, Task]),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
